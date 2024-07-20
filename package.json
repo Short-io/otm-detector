@@ -1,0 +1,23 @@
+{
+  "name": "otm-detector",
+  "version": "1.0.0",
+  "description": "Detect one-time mail services, the new way",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Short-io/otm-detector.git"
+  },
+  "keywords": [
+    "one-time-mail"
+  ],
+  "author": "Andrii Kostenko <andrii@short.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Short-io/otm-detector/issues"
+  },
+  "homepage": "https://github.com/Short-io/otm-detector#readme"
+}
