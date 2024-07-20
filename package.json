@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Detect one-time mail services, the new way",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "node --test"
   },
