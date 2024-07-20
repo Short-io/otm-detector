@@ -1,6 +1,6 @@
 {
   "name": "otm-detector",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Detect one-time mail services, the new way",
   "main": "index.js",
   "types": "index.d.ts",

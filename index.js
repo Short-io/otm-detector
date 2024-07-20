@@ -5,6 +5,13 @@ const OTM_HOSTS = new Set([
 ])
 export const isOneTimeMail = async (domain, options = {}) => {
     const otmDns = options.dns || dns;
-    const records = await otmDns.resolveMx(domain)
-    return records.some((record) => OTM_HOSTS.has(record.exchange))
+    try {
+        const records = await otmDns.resolveMx(domain)
+        return records.some((record) => OTM_HOSTS.has(record.exchange))
+    } catch (e) {
+        if (e.code === "ENOTFOUND") {
+            return false
+        }
+        throw e
+    }
 };
