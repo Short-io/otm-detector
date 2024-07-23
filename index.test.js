@@ -9,6 +9,7 @@ const domains = [
   {
     domain: "google.com",
     mx: ["smtp.google.com"],
+    a: ["64.233.180.26", "142.251.163.27"],
     result: false,
   },
   {
@@ -21,10 +22,16 @@ const domains = [
     mx: ENOTFOUND,
     result: false,
   },
+  {
+    domain: "bad-ip.com",
+    mx: ["mail.bad-ip.com"],
+    result: true,
+    a: ["167.172.1.68"],
+  }
 ];
 
 for (const domain of domains) {
-  test(`Check if ${domain.domain} has ${domain.mx} as MX`, async (t) => {
+  test(`Check if ${domain.domain} has ${domain.mx}`, async (t) => {
     assert.equal(
       await isOneTimeMail(domain.domain, {
         dns: {
@@ -34,6 +41,12 @@ for (const domain of domains) {
             }
             return domain.mx.map((exchange) => ({ exchange }));
           },
+          resolve4: async (host) => {
+            if (domain.a instanceof Error) {
+              throw domain.a;
+            }
+            return domain.a;
+          }
         },
       }),
       domain.result
