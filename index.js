@@ -6,7 +6,8 @@ const OTM_HOSTS = new Set([
 ])
 const OTM_IPS = new Set([
     "167.172.1.68",
-    "54.39.193.199"
+    "54.39.193.199",
+    "164.90.254.47",
 ])
 export const isOneTimeMail = async (domain, options = {}) => {
     const otmDns = options.dns || dns;
