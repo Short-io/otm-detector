@@ -9,6 +9,9 @@ const OTM_HOSTS = new Set([
     "mx4.emaildbox.pro",
     "mx5.emaildbox.pro",
     "prd-smtp.10minutemail.com",
+    "emailfake.com",
+    "mx1.forwardemail.net",
+    "mx2.forwardemail.net",
 
 ])
 const OTM_IPS = new Set([
