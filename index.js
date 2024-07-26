@@ -3,6 +3,12 @@ const OTM_HOSTS = new Set([
     "in.mail.tm",
     "mail.onetimemail.org",
     "mx.mail-data.net",
+    "mx1.emaildbox.pro",
+    "mx2.emaildbox.pro",
+    "mx3.emaildbox.pro",
+    "mx4.emaildbox.pro",
+    "mx5.emaildbox.pro",
+
 ])
 const OTM_IPS = new Set([
     "167.172.1.68",
