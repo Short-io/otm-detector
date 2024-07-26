@@ -8,6 +8,7 @@ const OTM_HOSTS = new Set([
     "mx3.emaildbox.pro",
     "mx4.emaildbox.pro",
     "mx5.emaildbox.pro",
+    "prd-smtp.10minutemail.com",
 
 ])
 const OTM_IPS = new Set([
