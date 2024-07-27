@@ -12,7 +12,7 @@ const OTM_HOSTS = new Set([
     "emailfake.com",
     "mx1.forwardemail.net",
     "mx2.forwardemail.net",
-
+    "mx2.den.yt",
 ])
 const OTM_IPS = new Set([
     "167.172.1.68",
