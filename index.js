@@ -20,6 +20,7 @@ const OTM_IPS = new Set([
     "164.90.254.47",
     "167.114.206.221",
     "15.204.213.223",
+    "173.225.105.34",
 ])
 export const isOneTimeMail = async (domain, options = {}) => {
     const otmDns = options.dns || dns;
