@@ -13,6 +13,7 @@ const OTM_HOSTS = new Set([
     "mx1.forwardemail.net",
     "mx2.forwardemail.net",
     "mx2.den.yt",
+    "mail.daseco.net",
 ])
 const OTM_IPS = new Set([
     "167.172.1.68",
@@ -21,6 +22,7 @@ const OTM_IPS = new Set([
     "167.114.206.221",
     "15.204.213.223",
     "173.225.105.34",
+    "5.75.161.54",
 ])
 export const isOneTimeMail = async (domain, options = {}) => {
     const otmDns = options.dns || dns;
