@@ -13,6 +13,12 @@ const OTM_HOSTS = new Set([
     "mx1.forwardemail.net",
     "mx2.forwardemail.net",
     "mx2.den.yt",
+    "route1.mx.cloudflare.net",
+    "route2.mx.cloudflare.net",
+    "route3.mx.cloudflare.net",
+    "mx1-hosting.jellyfish.systems",
+    "mx2-hosting.jellyfish.systems",
+    "mx3-hosting.jellyfish.systems",
 ])
 const OTM_IPS = new Set([
     "167.172.1.68",
