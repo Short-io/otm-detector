@@ -19,6 +19,7 @@ const OTM_HOSTS = new Set([
     "mx1-hosting.jellyfish.systems",
     "mx2-hosting.jellyfish.systems",
     "mx3-hosting.jellyfish.systems",
+    "generator.email",
 ])
 const OTM_IPS = new Set([
     "136.243.103.68",
