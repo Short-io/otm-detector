@@ -24,6 +24,10 @@ const isOTM = await isOneTimeMail(hostname);
 console.log(`Is ${hostname} a one-time mail service? ${isOTM}`);
 ```
 
+### Related links
+
+We recommend using this module with existing burner email providers (for example, https://github.com/wesbos/burner-email-providers) to provide better results
+
 ### Contributing
 
 Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request on the [GitHub repository](https://github.com/short-io/otm-detector).
