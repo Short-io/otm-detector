@@ -15,8 +15,19 @@ npm install otm-detector
 
 To use the OTM Detector module in your project, require it and call the `isOneTimeMail` function, passing the hostname as a parameter. The function will return `true` if the hostname belongs to a one-time mail service, and `false` otherwise.
 
+Import:
 ```javascript
 import { isOneTimeMail } from 'otm-detector';
+
+const hostname = 'example.com';
+const isOTM = await isOneTimeMail(hostname);
+
+console.log(`Is ${hostname} a one-time mail service? ${isOTM}`);
+```
+
+Require:
+```javascript
+const { isOneTimeMail } = require('otm-detector');
 
 const hostname = 'example.com';
 const isOTM = await isOneTimeMail(hostname);
@@ -31,6 +42,9 @@ We recommend using this module with existing burner email providers (for example
 ### Contributing
 
 Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request on the [GitHub repository](https://github.com/short-io/otm-detector).
+
+### Development
+After editing `index.js`, run `npx rollup index.js --file index.cjs --format cjs` to produce a CommonJS file as well.
 
 ### License
 

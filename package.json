@@ -8,6 +8,10 @@
     "test": "node --test"
   },
   "type": "module",
+  "exports": {
+    "import": "./index.js",
+    "require": "./index.cjs"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Short-io/otm-detector.git"
@@ -20,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/Short-io/otm-detector/issues"
   },
-  "homepage": "https://github.com/Short-io/otm-detector#readme"
+  "homepage": "https://github.com/Short-io/otm-detector#readme",
+  "devDependencies": {
+    "rollup": "^4.24.4"
+  }
 }
