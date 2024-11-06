@@ -1,8 +1,4 @@
-'use strict';
-
-var dns = require('node:dns/promises');
-
-const OTM_HOSTS = new Set([
+export const OTM_HOSTS = new Set([
   "in.mail.tm",
   "mail.onetimemail.org",
   "mx.mail-data.net",
@@ -25,9 +21,9 @@ const OTM_HOSTS = new Set([
   "mx1.simplelogin.co",
   "mx2.simplelogin.co",
   "generator.email",
-]);
+])
 
-const OTM_IPS = new Set([
+export const OTM_IPS = new Set([
   "136.243.103.68",
   "137.184.243.159",
   "146.190.197.86",
@@ -48,31 +44,4 @@ const OTM_IPS = new Set([
   "66.70.233.243", // openmail.pro
   "92.255.84.131",
   "96.126.99.62",
-]);
-
-const isOneTimeMail = async (domain, options = {}) => {
-    const otmDns = options.dns || dns;
-    try {
-        const records = await otmDns.resolveMx(domain);
-        if (records.length === 0) { // this email is invalid, but we are not a validator
-            return false
-        }
-        if (records.some((record) => OTM_HOSTS.has(record.exchange))) {
-            return true
-        }
-        // check first record for new
-        const mxHost = records[0].exchange;
-        const mxAddresses = await otmDns.resolve4(mxHost);
-        if (mxAddresses.some((address) => OTM_IPS.has(address))) {
-            return true
-        }
-        return false;
-    } catch (e) {
-        if (e.code === "ENOTFOUND") {
-            return false
-        }
-        throw e
-    }
-};
-
-exports.isOneTimeMail = isOneTimeMail;
+])

@@ -44,7 +44,8 @@ We recommend using this module with existing burner email providers (for example
 Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request on the [GitHub repository](https://github.com/short-io/otm-detector).
 
 ### Development
-After editing `index.js`, run `npx rollup index.js --file index.cjs --format cjs` to produce a CommonJS file as well.
+After editing `index.js`, run `npx rollup index.js --file index.cjs --format cjs` to generate a CommonJS module.
+Do not edit `index.cjs` directly.
 
 ### License
 
