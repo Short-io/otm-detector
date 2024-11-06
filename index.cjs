@@ -1,8 +1,5 @@
-'use strict';
-
-var dns = require('node:dns/promises');
-
-const OTM_HOSTS = new Set([
+// DO NOT EDIT DIRECTLY
+'use strict';Object.defineProperty(exports,Symbol.toStringTag,{value:'Module'});const dns=require('node:dns/promises');const OTM_HOSTS = new Set([
   "in.mail.tm",
   "mail.onetimemail.org",
   "mx.mail-data.net",
@@ -48,9 +45,7 @@ const OTM_IPS = new Set([
   "66.70.233.243", // openmail.pro
   "92.255.84.131",
   "96.126.99.62",
-]);
-
-const isOneTimeMail = async (domain, options = {}) => {
+]);const isOneTimeMail = async (domain, options = {}) => {
     const otmDns = options.dns || dns;
     try {
         const records = await otmDns.resolveMx(domain);
@@ -73,6 +68,4 @@ const isOneTimeMail = async (domain, options = {}) => {
         }
         throw e
     }
-};
-
-exports.isOneTimeMail = isOneTimeMail;
+};exports.isOneTimeMail=isOneTimeMail;//# sourceMappingURL=index.cjs.map
