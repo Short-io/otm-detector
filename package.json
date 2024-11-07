@@ -1,6 +1,6 @@
 {
   "name": "otm-detector",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Detect one-time mail services, the new way",
   "main": "index.js",
   "types": "index.d.ts",
@@ -28,5 +28,6 @@
   "homepage": "https://github.com/Short-io/otm-detector#readme",
   "devDependencies": {
     "rollup": "^4.24.4"
-  }
+  },
+  "packageManager": "npm@10.7.0"
 }
