@@ -1,4 +1,6 @@
-## Module: OTM Detector
+## One Time Mail Detector
+
+[![npm version](https://badge.fury.io/js/otm-detector.svg)](https://badge.fury.io/js/otm-detector)
 
 The OTM Detector module is a lightweight module that allows you to detect one-time mail services by checking the MX (Mail Exchange) records of a given hostname.
 Most of similar modules have block list of one-time mail services, but this module uses a different approach to detect one-time mail services. It checks the MX records of the hostname to determine if it belongs to a one-time mail service. Usually such services purchase a lot of domains and use them as one-time mail services. This module is able to detect such services.
