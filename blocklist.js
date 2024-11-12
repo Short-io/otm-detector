@@ -1,4 +1,13 @@
 export const OTM_HOSTS = new Set([
+  "recv6.erinn.biz",
+  "recv7.erinn.biz",
+  "recv8.erinn.biz",
+  "recv1.erinn.biz",
+  "recv100.erinn.biz",
+  "recv101.erinn.biz",
+  "recv2.erinn.biz",
+  "recv3.erinn.biz",
+  "recv4.erinn.biz",
   "email-fake.com",
   "emailfake.com",
   "emailfake.com",
