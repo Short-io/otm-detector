@@ -1,33 +1,33 @@
 {
-  "name": "otm-detector",
-  "version": "1.2.2",
-  "description": "Detect one-time mail services, the new way",
-  "main": "index.js",
-  "types": "index.d.ts",
-  "scripts": {
-    "test": "node --test",
-    "build": "rollup index.js --file index.cjs --format cjs --generatedCode=es2015 --compact --banner \"// DO NOT EDIT DIRECTLY\" --sourcemap"
-  },
-  "type": "module",
-  "exports": {
-    "import": "./index.js",
-    "require": "./index.cjs"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Short-io/otm-detector.git"
-  },
-  "keywords": [
-    "one-time-mail"
-  ],
-  "author": "Andrii Kostenko <andrii@short.io>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Short-io/otm-detector/issues"
-  },
-  "homepage": "https://github.com/Short-io/otm-detector#readme",
-  "devDependencies": {
-    "rollup": "^4.25.0"
-  },
-  "packageManager": "npm@10.7.0"
+    "name": "otm-detector",
+    "version": "1.2.3",
+    "description": "Detect one-time mail services, the new way",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "scripts": {
+        "test": "node --test",
+        "build": "rollup index.js --file index.cjs --format cjs --generatedCode=es2015 --compact --banner \"// DO NOT EDIT DIRECTLY\" --sourcemap"
+    },
+    "type": "module",
+    "exports": {
+        "import": "./index.js",
+        "require": "./index.cjs"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Short-io/otm-detector.git"
+    },
+    "keywords": [
+        "one-time-mail"
+    ],
+    "author": "Andrii Kostenko <andrii@short.io>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Short-io/otm-detector/issues"
+    },
+    "homepage": "https://github.com/Short-io/otm-detector#readme",
+    "devDependencies": {
+        "rollup": "^4.25.0"
+    },
+    "packageManager": "npm@10.7.0"
 }
