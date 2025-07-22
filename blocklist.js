@@ -40,6 +40,9 @@ export const OTM_HOSTS = new Set([
     "route2.mx.cloudflare.net",
     "route3.mx.cloudflare.net",
     "tempm.com",
+    "mail.incognitomail.co",
+    "mail.wallywatts.com",
+    "mail.wabblywabble.com",
 ]);
 
 export const OTM_IPS = new Set([

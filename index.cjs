@@ -41,6 +41,9 @@
     "route2.mx.cloudflare.net",
     "route3.mx.cloudflare.net",
     "tempm.com",
+    "mail.incognitomail.co",
+    "mail.wallywatts.com",
+    "mail.wabblywabble.com",
 ]);
 
 const OTM_IPS = new Set([
@@ -63,10 +66,12 @@ const OTM_IPS = new Set([
     "24.199.67.157",
     "46.101.111.206",
     "51.222.102.161",
+    "5.252.35.241", // znemail.com
     "54.39.17.59",
     "54.39.193.199",
     "66.70.233.243", // openmail.pro
     "92.255.84.131",
+    "92.255.56.148", // mail.letterguard.net
     "96.126.99.62",
 ]);const isOneTimeMail = async (domain, options = {}) => {
     const otmDns = options.dns || dns;
