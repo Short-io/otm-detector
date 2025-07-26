@@ -3,6 +3,7 @@ export const OTM_HOSTS = new Set([
     "emailfake.com",
     "emailfake.com",
     "generator.email",
+    "hi.mail.cx",
     "in.mail.tm",
     "mail.incognitomail.co",
     "mail.mailinator.com",
@@ -62,6 +63,7 @@ export const OTM_IPS = new Set([
     "23.239.2.211",
     "24.199.67.157",
     "46.101.111.206",
+    "51.91.252.134", // mailp.org
     "51.222.102.161",
     "5.252.35.241", // znemail.com
     "54.39.17.59",
