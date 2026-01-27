@@ -1,7 +1,10 @@
 import dns from "node:dns/promises";
 
-declare const OTM_HOSTS: Set<string>;
+interface OtmResult {
+    otmAllowed: boolean;
+    abuseEmail: string | null;
+}
 
-export declare const isOneTimeMail: (domain: string, options?: {
+export declare const getOneTimeMailInfo: (domain: string, options?: {
     dns?: typeof dns;
-}) => Promise<boolean>;
+}) => Promise<OtmResult>;

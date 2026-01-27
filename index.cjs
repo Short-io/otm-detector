@@ -1,35 +1,26 @@
 // DO NOT EDIT DIRECTLY
 'use strict';Object.defineProperty(exports,Symbol.toStringTag,{value:'Module'});const dns=require('node:dns/promises');const OTM_HOSTS = new Set([
-    "recv6.erinn.biz",
-    "recv7.erinn.biz",
-    "recv8.erinn.biz",
-    "recv1.erinn.biz",
-    "recv100.erinn.biz",
-    "recv101.erinn.biz",
-    "recv2.erinn.biz",
-    "recv3.erinn.biz",
-    "recv4.erinn.biz",
     "email-fake.com",
     "emailfake.com",
     "emailfake.com",
     "generator.email",
+    "hi.mail.cx",
     "in.mail.tm",
-    "mail.wabblywabble.com",
-    "mail.wallywatts.com",
+    "mail.incognitomail.co",
     "mail.mailinator.com",
     "mail.onetimemail.org",
+    "mail.wabblywabble.com",
+    "mail.wallywatts.com",
     "mail2.mailinator.com",
     "mailinator.com",
     "mx.mail-data.net",
     "mx1-hosting.jellyfish.systems",
     "mx1.emaildbox.pro",
-    "mx1.forwardemail.net",
     "mx1.privateemail.com",
     "mx1.simplelogin.co",
     "mx2-hosting.jellyfish.systems",
     "mx2.den.yt",
     "mx2.emaildbox.pro",
-    "mx2.forwardemail.net",
     "mx2.privateemail.com",
     "mx2.simplelogin.co",
     "mx3-hosting.jellyfish.systems",
@@ -37,13 +28,24 @@
     "mx4.emaildbox.pro",
     "mx5.emaildbox.pro",
     "prd-smtp.10minutemail.com",
+    "recv1.erinn.biz",
+    "recv100.erinn.biz",
+    "recv101.erinn.biz",
+    "recv2.erinn.biz",
+    "recv3.erinn.biz",
+    "recv4.erinn.biz",
+    "recv6.erinn.biz",
+    "recv7.erinn.biz",
+    "recv8.erinn.biz",
     "route1.mx.cloudflare.net",
     "route2.mx.cloudflare.net",
     "route3.mx.cloudflare.net",
     "tempm.com",
-    "mail.incognitomail.co",
-    "mail.wallywatts.com",
-    "mail.wabblywabble.com",
+]);
+
+const abuseContacts = new Map([
+    ["mx1.forwardemail.net", "abuse@forwardemail.net"],
+    ["mx2.forwardemail.net", "abuse@forwardemail.net"],
 ]);
 
 const OTM_IPS = new Set([
@@ -65,6 +67,7 @@ const OTM_IPS = new Set([
     "23.239.2.211",
     "24.199.67.157",
     "46.101.111.206",
+    "51.91.252.134", // mailp.org
     "51.222.102.161",
     "5.252.35.241", // znemail.com
     "54.39.17.59",
@@ -73,27 +76,27 @@ const OTM_IPS = new Set([
     "92.255.84.131",
     "92.255.56.148", // mail.letterguard.net
     "96.126.99.62",
-]);const isOneTimeMail = async (domain, options = {}) => {
+]);const getOneTimeMailInfo = async (domain, options = {}) => {
     const otmDns = options.dns || dns;
     try {
         const records = await otmDns.resolveMx(domain);
-        if (records.length === 0) { // this email is invalid, but we are not a validator
-            return false
+        if (records.length === 0) {
+            return { otmAllowed: false, abuseEmail: null }
         }
         if (records.some((record) => OTM_HOSTS.has(record.exchange))) {
-            return true
+            return { otmAllowed: true, abuseEmail: null }
         }
-        // check first record for new
         const mxHost = records[0].exchange;
         const mxAddresses = await otmDns.resolve4(mxHost);
         if (mxAddresses.some((address) => OTM_IPS.has(address))) {
-            return true
+            return { otmAllowed: true, abuseEmail: null }
         }
-        return false;
+        const abuseEmail = abuseContacts.get(mxHost) || null;
+        return { otmAllowed: false, abuseEmail };
     } catch (e) {
         if (e.code === "ENOTFOUND") {
-            return false
+            return { otmAllowed: false, abuseEmail: null }
         }
         throw e
     }
-};exports.isOneTimeMail=isOneTimeMail;//# sourceMappingURL=index.cjs.map
+};exports.getOneTimeMailInfo=getOneTimeMailInfo;//# sourceMappingURL=index.cjs.map

@@ -1,26 +1,26 @@
 import dns from "node:dns/promises";
-import { OTM_HOSTS, OTM_IPS } from './blocklist.js';
+import { OTM_HOSTS, OTM_IPS, abuseContacts } from './blocklist.js';
 
-export const isOneTimeMail = async (domain, options = {}) => {
+export const getOneTimeMailInfo = async (domain, options = {}) => {
     const otmDns = options.dns || dns;
     try {
         const records = await otmDns.resolveMx(domain)
-        if (records.length === 0) { // this email is invalid, but we are not a validator
-            return false
+        if (records.length === 0) {
+            return { otmAllowed: false, abuseEmail: null }
         }
         if (records.some((record) => OTM_HOSTS.has(record.exchange))) {
-            return true
+            return { otmAllowed: true, abuseEmail: null }
         }
-        // check first record for new
         const mxHost = records[0].exchange
         const mxAddresses = await otmDns.resolve4(mxHost)
         if (mxAddresses.some((address) => OTM_IPS.has(address))) {
-            return true
+            return { otmAllowed: true, abuseEmail: null }
         }
-        return false;
+        const abuseEmail = abuseContacts.get(mxHost) || null;
+        return { otmAllowed: false, abuseEmail };
     } catch (e) {
         if (e.code === "ENOTFOUND") {
-            return false
+            return { otmAllowed: false, abuseEmail: null }
         }
         throw e
     }

@@ -15,13 +15,11 @@ export const OTM_HOSTS = new Set([
     "mx.mail-data.net",
     "mx1-hosting.jellyfish.systems",
     "mx1.emaildbox.pro",
-    "mx1.forwardemail.net",
     "mx1.privateemail.com",
     "mx1.simplelogin.co",
     "mx2-hosting.jellyfish.systems",
     "mx2.den.yt",
     "mx2.emaildbox.pro",
-    "mx2.forwardemail.net",
     "mx2.privateemail.com",
     "mx2.simplelogin.co",
     "mx3-hosting.jellyfish.systems",
@@ -42,6 +40,11 @@ export const OTM_HOSTS = new Set([
     "route2.mx.cloudflare.net",
     "route3.mx.cloudflare.net",
     "tempm.com",
+]);
+
+export const abuseContacts = new Map([
+    ["mx1.forwardemail.net", "abuse@forwardemail.net"],
+    ["mx2.forwardemail.net", "abuse@forwardemail.net"],
 ]);
 
 export const OTM_IPS = new Set([
