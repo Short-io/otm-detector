@@ -14,16 +14,22 @@ Install otm-detector with npm
     
 ## Usage
 
-To use the OTM Detector module in your project, require it and call the `getOneTimeMailInfo` function, passing the hostname as a parameter. The function will return `true` if the hostname belongs to a one-time mail service, and `false` otherwise.
+To use the OTM Detector module in your project, require it and call the `getOneTimeMailInfo` function, passing the hostname as a parameter. The function returns an object with the following properties:
+
+- `otmAllowed` (boolean) — `true` if the hostname belongs to a one-time mail service.
+- `abuseEmail` (string | null) — abuse contact email for providers that do not allow registering burner accounts. You can report the domain to this address for violation of the provider's Terms of Service.
 
 Import:
 ```javascript
 import { getOneTimeMailInfo } from 'otm-detector';
 
 const hostname = 'example.com';
-const isOTM = await getOneTimeMailInfo(hostname);
+const { otmAllowed, abuseEmail } = await getOneTimeMailInfo(hostname);
 
-console.log(`Is ${hostname} a one-time mail service? ${isOTM}`);
+console.log(`Is ${hostname} a one-time mail service? ${otmAllowed}`);
+if (abuseEmail) {
+  console.log(`Report abuse to: ${abuseEmail}`);
+}
 ```
 
 Require:
@@ -31,9 +37,12 @@ Require:
 const { getOneTimeMailInfo } = require('otm-detector');
 
 const hostname = 'example.com';
-const isOTM = await getOneTimeMailInfo(hostname);
+const { otmAllowed, abuseEmail } = await getOneTimeMailInfo(hostname);
 
-console.log(`Is ${hostname} a one-time mail service? ${isOTM}`);
+console.log(`Is ${hostname} a one-time mail service? ${otmAllowed}`);
+if (abuseEmail) {
+  console.log(`Report abuse to: ${abuseEmail}`);
+}
 ```
 
 ## FAQ
@@ -57,6 +66,11 @@ We do not add services to this list for the following reasons:
 - Sending SPAM.
 
 #### How can I remove my service from the list?
+
+We can remove your service from the blocklist and move it to the abuse contacts list if all of the following conditions are met:
+- Your Terms of Service clearly state that using the service for burner accounts is forbidden.
+- You provide an abuse email address to report burner accounts.
+- You respond to abuse reports in a timely manner.
 
 Please submit a pull request (PR) with an explanation.
 ## Contributing
