@@ -34,6 +34,45 @@ const domains = [
     a: ["1.2.3.4"],
     result: { otmAllowed: false, abuseEmail: "abuse@forwardemail.net" },
   },
+  {
+    // Wildcard match: recv*.erinn.biz with a number that was never explicitly listed.
+    domain: "wildcard-numeric.com",
+    mx: ["recv5.erinn.biz"],
+    result: { otmAllowed: true, abuseEmail: null },
+  },
+  {
+    // Wildcard match: bare label (zero chars under `*`).
+    domain: "wildcard-bare.com",
+    mx: ["recv.erinn.biz"],
+    result: { otmAllowed: true, abuseEmail: null },
+  },
+  {
+    // Wildcard match: non-numeric label.
+    domain: "wildcard-alpha.com",
+    mx: ["recvfoo.erinn.biz"],
+    result: { otmAllowed: true, abuseEmail: null },
+  },
+  {
+    // Wildcard must not span dots — extra label between `recv` and the suffix.
+    domain: "wildcard-cross-dot.com",
+    mx: ["recv1.something.erinn.biz"],
+    a: ["1.2.3.4"],
+    result: { otmAllowed: false, abuseEmail: null },
+  },
+  {
+    // Wildcard is anchored at the start — prefix before `recv` must not match.
+    domain: "wildcard-prefix.com",
+    mx: ["xyzrecv1.erinn.biz"],
+    a: ["1.2.3.4"],
+    result: { otmAllowed: false, abuseEmail: null },
+  },
+  {
+    // Wildcard is anchored at the end — different suffix must not match.
+    domain: "wildcard-suffix.com",
+    mx: ["recv1.erinn.biz.evil.com"],
+    a: ["1.2.3.4"],
+    result: { otmAllowed: false, abuseEmail: null },
+  },
 ];
 
 for (const domain of domains) {

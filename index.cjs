@@ -2,15 +2,22 @@
 'use strict';Object.defineProperty(exports,Symbol.toStringTag,{value:'Module'});const dns=require('node:dns/promises');// DO NOT EDIT DIRECTLY — generated from blocklist.json by scripts/generate-blocklist.js
 
 const OTM_HOSTS = new Set([
+    "_dc-mx.4ca75f70edcf.okyre.com", // okyre.com
+    "_dc-mx.5e5e17bc6c36.tempmail.cc", // tempmail.cc
     "email-fake.com",
     "emailfake.com",
     "generator.email",
     "hi.mail.cx",
     "in.mail.tm",
     "mail.anonaddy.me",
+    "mail.cmail.asia", // cmail.asia
     "mail.incognitomail.co",
     "mail.mailinator.com",
     "mail.onetimemail.org",
+    "mail.pmail.asia", // pmail.asia
+    "mail.t-mail.asia", // t-mail.asia
+    "mail.tempmailt.com", // tempmailt.com
+    "mail.umail.asia", // umail.asia
     "mail.wabblywabble.com",
     "mail.wallywatts.com",
     "mail2.anonaddy.me",
@@ -31,20 +38,15 @@ const OTM_HOSTS = new Set([
     "mx4.emaildbox.pro",
     "mx5.emaildbox.pro",
     "prd-smtp.10minutemail.com",
-    "recv1.erinn.biz",
-    "recv100.erinn.biz",
-    "recv101.erinn.biz",
-    "recv2.erinn.biz",
-    "recv3.erinn.biz",
-    "recv4.erinn.biz",
-    "recv6.erinn.biz",
-    "recv7.erinn.biz",
-    "recv8.erinn.biz",
     "route1.mx.cloudflare.net",
     "route2.mx.cloudflare.net",
     "route3.mx.cloudflare.net",
     "tempm.com",
 ]);
+
+const OTM_HOST_PATTERNS = [
+    /^recv[^.]*\.erinn\.biz$/, // recv*.erinn.biz
+];
 
 const abuseContacts = new Map([
     ["mx1.forwardemail.net", "abuse@forwardemail.net"],
@@ -81,14 +83,17 @@ const OTM_IPS = new Set([
     "92.255.56.148", // mail.letterguard.net
     "92.255.84.131",
     "96.126.99.62",
-]);const getOneTimeMailInfo = async (domain, options = {}) => {
+]);const isOtmHost = (host) =>
+    OTM_HOSTS.has(host) || OTM_HOST_PATTERNS.some((pattern) => pattern.test(host));
+
+const getOneTimeMailInfo = async (domain, options = {}) => {
     const otmDns = options.dns || dns;
     try {
         const records = await otmDns.resolveMx(domain);
         if (records.length === 0) {
             return { otmAllowed: false, abuseEmail: null }
         }
-        if (records.some((record) => OTM_HOSTS.has(record.exchange))) {
+        if (records.some((record) => isOtmHost(record.exchange))) {
             return { otmAllowed: true, abuseEmail: null }
         }
         const mxHost = records[0].exchange;

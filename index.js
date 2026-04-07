@@ -1,5 +1,8 @@
 import dns from "node:dns/promises";
-import { OTM_HOSTS, OTM_IPS, abuseContacts } from './blocklist.js';
+import { OTM_HOSTS, OTM_HOST_PATTERNS, OTM_IPS, abuseContacts } from './blocklist.js';
+
+const isOtmHost = (host) =>
+    OTM_HOSTS.has(host) || OTM_HOST_PATTERNS.some((pattern) => pattern.test(host));
 
 export const getOneTimeMailInfo = async (domain, options = {}) => {
     const otmDns = options.dns || dns;
@@ -8,7 +11,7 @@ export const getOneTimeMailInfo = async (domain, options = {}) => {
         if (records.length === 0) {
             return { otmAllowed: false, abuseEmail: null }
         }
-        if (records.some((record) => OTM_HOSTS.has(record.exchange))) {
+        if (records.some((record) => isOtmHost(record.exchange))) {
             return { otmAllowed: true, abuseEmail: null }
         }
         const mxHost = records[0].exchange
