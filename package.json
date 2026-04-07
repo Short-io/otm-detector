@@ -6,7 +6,9 @@
     "types": "index.d.ts",
     "scripts": {
         "test": "node --test",
-        "build": "rollup index.js --file index.cjs --format cjs --generatedCode=es2015 --compact --banner \"// DO NOT EDIT DIRECTLY\" --sourcemap"
+        "generate:blocklist": "node scripts/generate-blocklist.js",
+        "add-entry": "node scripts/add-entry.js",
+        "build": "npm run generate:blocklist && rollup index.js --file index.cjs --format cjs --generatedCode=es2015 --compact --banner \"// DO NOT EDIT DIRECTLY\" --sourcemap"
     },
     "type": "module",
     "exports": {

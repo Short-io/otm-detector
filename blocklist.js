@@ -1,6 +1,7 @@
+// DO NOT EDIT DIRECTLY — generated from blocklist.json by scripts/generate-blocklist.js
+
 export const OTM_HOSTS = new Set([
     "email-fake.com",
-    "emailfake.com",
     "emailfake.com",
     "generator.email",
     "hi.mail.cx",
@@ -61,20 +62,22 @@ export const OTM_IPS = new Set([
     "161.35.252.140",
     "164.90.254.47",
     "167.114.206.221",
-    "167.172.1.68",
+    "167.172.1.68", // tempmail.cc
+    "167.71.194.110",
     "173.225.105.34",
     "194.31.59.229",
     "209.38.189.190",
     "23.239.2.211",
     "24.199.67.157",
     "46.101.111.206",
-    "51.91.252.134", // mailp.org
-    "51.222.102.161",
     "5.252.35.241", // znemail.com
+    "51.222.102.161",
+    "51.79.254.220", // umail.asia
+    "51.91.252.134", // mailp.org
     "54.39.17.59",
     "54.39.193.199",
     "66.70.233.243", // openmail.pro
-    "92.255.84.131",
     "92.255.56.148", // mail.letterguard.net
+    "92.255.84.131",
     "96.126.99.62",
 ]);
