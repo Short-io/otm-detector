@@ -90,6 +90,59 @@ We recommend using this module with existing burner email providers (for example
 
 ## Development
 
-After editing `index.js`, run `npx rollup index.js --file index.cjs --format cjs` to generate a CommonJS module.
+After editing `index.js` or `blocklist.json`, run `npm run build` to regenerate `blocklist.js` and `index.cjs`.
 
-Do not edit `index.cjs` directly.
+Do not edit `blocklist.js` or `index.cjs` directly — both are generated.
+
+## Adding a new domain to the blocklist
+
+The blocklist source of truth is [`blocklist.json`](./blocklist.json), which has three sections:
+
+- `hosts` — exact MX hostnames to block, or wildcard patterns containing `*` (see below)
+- `ips` — IPv4 addresses to block (used when the MX hostname itself is not on the list but resolves to a known temp-mail server)
+- `abuseContacts` — MX hostname → abuse email; the domain is **not** blocked but `getOneTimeMailInfo` returns the abuse address so callers can report violations
+
+The value of each `hosts`/`ips` entry is an optional source note (typically the temp-mail domain that led to its discovery), or `null` if there's nothing to record.
+
+### Option 1: use the add-entry script (recommended)
+
+For most temp-mail services, let the script resolve MX and A records for you and append them automatically:
+
+```bash
+npm run add-entry -- example-temp-mail.com
+```
+
+The script:
+1. Resolves the domain's MX records
+2. Resolves the A records of every MX host
+3. Appends new entries to `hosts` and `ips` in `blocklist.json` (existing entries are skipped)
+4. Regenerates `blocklist.js`
+
+You still need to run `npm run build` afterwards if you want the `index.cjs` bundle refreshed, and `npm test` to make sure nothing broke.
+
+Adding to `abuseContacts` is **not** supported by the script — edit `blocklist.json` directly.
+
+### Option 2: edit `blocklist.json` manually
+
+Add the entry to the appropriate section, then rebuild:
+
+```bash
+npm run build
+npm test
+```
+
+### Wildcard host patterns
+
+A `hosts` key may contain `*`, which acts as a glob matching any characters except `.` (DNS-label semantics — it does **not** span dots). This is useful for collapsing numbered MX clusters that share an obvious naming pattern. For example:
+
+```json
+{
+  "hosts": {
+    "recv*.erinn.biz": null
+  }
+}
+```
+
+matches `recv1.erinn.biz`, `recv42.erinn.biz`, and `recvfoo.erinn.biz`, but not `recv1.something.erinn.biz` or `xyzrecv1.erinn.biz`. The pattern is anchored at both ends. The generator compiles wildcard entries into a separate `OTM_HOST_PATTERNS` regex array; exact-match hosts continue to use a `Set` for O(1) lookup.
+
+Use wildcards conservatively — only when the naming pattern is unambiguous and the risk of over-matching legitimate mail servers is low.
