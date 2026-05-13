@@ -40,10 +40,12 @@
     "route1.mx.cloudflare.net": null,
     "route2.mx.cloudflare.net": null,
     "route3.mx.cloudflare.net": null,
+    "smtp.mail.td": "sugtbt.com",
     "tempm.com": null
   },
   "ips": {
     "116.202.9.167": null,
+    "135.181.195.96": "sugtbt.com",
     "136.243.103.68": null,
     "137.184.243.159": null,
     "146.190.197.86": null,

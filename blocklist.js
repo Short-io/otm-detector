@@ -40,6 +40,7 @@ export const OTM_HOSTS = new Set([
     "route1.mx.cloudflare.net",
     "route2.mx.cloudflare.net",
     "route3.mx.cloudflare.net",
+    "smtp.mail.td", // sugtbt.com
     "tempm.com",
 ]);
 
@@ -54,6 +55,7 @@ export const abuseContacts = new Map([
 
 export const OTM_IPS = new Set([
     "116.202.9.167",
+    "135.181.195.96", // sugtbt.com
     "136.243.103.68",
     "137.184.243.159",
     "146.190.197.86",
