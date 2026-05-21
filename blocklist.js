@@ -21,6 +21,7 @@ export const OTM_HOSTS = new Set([
     "mail.wallywatts.com",
     "mail2.anonaddy.me",
     "mail2.mailinator.com",
+    "mailer.edu.pl", // mailer.edu.pl
     "mailinator.com",
     "mx.mail-data.net",
     "mx1-hosting.jellyfish.systems",
@@ -70,6 +71,7 @@ export const OTM_IPS = new Set([
     "167.71.194.110",
     "173.225.105.34",
     "194.31.59.229",
+    "198.252.98.85", // mailer.edu.pl
     "209.38.189.190",
     "23.239.2.211",
     "24.199.67.157",
