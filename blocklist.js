@@ -19,6 +19,7 @@ export const OTM_HOSTS = new Set([
     "mail.umail.asia", // umail.asia
     "mail.wabblywabble.com",
     "mail.wallywatts.com",
+    "mail1.atomicmail.io", // atomicmail.io
     "mail2.anonaddy.me",
     "mail2.mailinator.com",
     "mailer.edu.pl", // mailer.edu.pl
@@ -58,6 +59,7 @@ export const OTM_IPS = new Set([
     "136.243.103.68",
     "137.184.243.159",
     "146.190.197.86",
+    "148.251.47.188", // atomicmail.io
     "15.204.213.223",
     "15.235.72.244",
     "15.235.72.245",
